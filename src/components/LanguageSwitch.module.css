@@ -1,0 +1,31 @@
+.switch {
+  display: flex;
+  gap: 4px;
+  background: var(--mint);
+  border-radius: 999px;
+  padding: 4px;
+  width: max-content;
+}
+
+.option,
+.active {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 9px 16px;
+  border-radius: 999px;
+}
+
+.option {
+  color: var(--green);
+}
+
+.option:hover {
+  background: var(--mint-hover);
+}
+
+.active,
+.active:hover {
+  background: var(--green);
+  color: #FFFFFF;
+}

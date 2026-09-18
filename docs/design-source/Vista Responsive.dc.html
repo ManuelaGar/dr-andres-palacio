@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vista iPad y móvil · Dr. Andrés Palacio</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#EFEDE8;color:#101A20;font-family:"Instrument Sans",system-ui,sans-serif}</style>
+</helmet>
+<div style="padding:clamp(22px,4vw,48px)">
+  <div style="max-width:1300px;margin:0 auto 28px">
+    <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#55635F">Landing Dr. Andrés Palacio</div>
+    <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(28px,4vw,46px);line-height:1.05;letter-spacing:-.02em;color:#0F3B2D;margin:14px 0 0">Vista en iPad y móvil</h1>
+    <p style="margin:14px 0 0;max-width:62ch;font-size:15.5px;line-height:1.7;color:#4B5A5A">Las dos vistas cargan la misma página: reflujo de una columna, menú hamburguesa por debajo de 900 px y botón fijo de WhatsApp. Puedes desplazarte dentro de cada pantalla.</p>
+  </div>
+
+  <div style="max-width:1300px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,56px);align-items:flex-start;justify-content:center">
+    <div style="display:grid;gap:14px;justify-items:center">
+      <div style="background:#0F1A16;border-radius:34px;padding:14px;box-shadow:0 40px 70px -40px rgba(16,26,32,.6)">
+        <div style="width:min(78vw,820px);aspect-ratio:820/1100;border-radius:22px;overflow:hidden;background:#FBFAF8">
+          <iframe src="Landing Dr Palacio.dc.html" title="Landing en iPad" style="width:820px;height:1100px;border:0;display:block;transform-origin:0 0;transform:scale(var(--ipad-scale,1))"></iframe>
+        </div>
+      </div>
+      <div style="font-size:13px;color:#55635F">iPad · 820 × 1100</div>
+    </div>
+
+    <div style="display:grid;gap:14px;justify-items:center">
+      <div style="background:#0F1A16;border-radius:46px;padding:12px;box-shadow:0 40px 70px -40px rgba(16,26,32,.6)">
+        <div style="width:390px;height:844px;border-radius:36px;overflow:hidden;background:#FBFAF8;position:relative">
+          <iframe src="Landing Dr Palacio.dc.html" title="Landing en móvil" style="width:390px;height:844px;border:0;display:block"></iframe>
+        </div>
+      </div>
+      <div style="font-size:13px;color:#55635F">iPhone · 390 × 844</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._fit = () => {
+      const box = document.querySelector('iframe[title="Landing en iPad"]');
+      if (!box || !box.parentElement) return;
+      const w = box.parentElement.getBoundingClientRect().width;
+      box.parentElement.style.setProperty('--ipad-scale', (w / 820).toFixed(4));
+      box.style.transform = 'scale(' + (w / 820).toFixed(4) + ')';
+    };
+    this._fit();
+    window.addEventListener('resize', this._fit);
+  }
+  componentWillUnmount() { if (this._fit) window.removeEventListener('resize', this._fit); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

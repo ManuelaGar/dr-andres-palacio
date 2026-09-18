@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preguntas frecuentes | Dr. Andrés Palacio</title>
+<meta name="description" content="Preguntas frecuentes sobre la consulta de endocrinología del Dr. Andrés Palacio en Medellín: cómo agendar, qué llevar, teleconsulta internacional y atención en inglés.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#FBFAF8; color:#101A20; font-family:"Instrument Sans",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:#0F3B2D; text-decoration:none; }
+  a:hover { color:#0A2A20; }
+  html { scroll-behavior:smooth; }
+</style>
+</helmet>
+<div style="overflow-x:hidden">
+  <header style="position:sticky;top:0;z-index:50;background:rgba(251,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(16,26,32,.08)">
+    <div style="max-width:1100px;margin:0 auto;padding:14px clamp(18px,4vw,48px);display:flex;align-items:center;gap:20px;justify-content:space-between;flex-wrap:wrap">
+      <a href="Landing Dr Palacio.dc.html" style="display:flex;align-items:center;gap:12px">
+        <svg viewBox="0 0 120 96" width="46" height="37" fill="none" stroke="#0F3B2D" stroke-linecap="round" stroke-linejoin="round" style="flex:none;display:block"><path d="M6 88 L44 8 L82 88" stroke-width="5"></path><path d="M22 62 H66" stroke-width="4"></path><path d="M60 88 V26 H84 a19 19 0 0 1 0 38 H60" stroke-width="5"></path></svg>
+        <span style="line-height:1.3">
+          <span style="display:block;font-size:15px;font-weight:600;color:#101A20">Dr. Andrés Palacio</span>
+          <span style="display:block;font-size:10.5px;color:#55635F;margin-top:2px">{{ t.specialty }}</span>
+        </span>
+      </a>
+      <span style="display:flex;align-items:center;gap:12px">
+        <span style="display:flex;gap:4px;background:#EAF0EC;border-radius:999px;padding:4px">
+          <button onClick="{{ setEs }}" style="{{ esBtnStyle }}">ES</button>
+          <button onClick="{{ setEn }}" style="{{ enBtnStyle }}">EN</button>
+        </span>
+        <a href="Landing Dr Palacio.dc.html" style="font-size:14px;font-weight:600;color:#0F3B2D">← {{ t.back }}</a>
+      </span>
+    </div>
+  </header>
+
+  <section style="max-width:1100px;margin:0 auto;padding:clamp(34px,5vw,72px) clamp(18px,4vw,48px) clamp(24px,3vw,36px)">
+    <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#55635F">{{ t.kicker }}</div>
+    <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,5vw,64px);line-height:1.02;letter-spacing:-.025em;color:#0F3B2D;margin:18px 0 0;max-width:24ch">{{ t.title }}</h1>
+    <p style="margin:20px 0 0;max-width:58ch;font-size:16.5px;line-height:1.75;color:#4B5A5A">{{ t.lede }}</p>
+  </section>
+
+  <section style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,4vw,48px) clamp(40px,6vw,72px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,40px)">
+      <div style="flex:1 1 240px;min-width:0;display:grid;gap:14px;align-content:start">
+        <div style="background:#EAF0EC;border-radius:20px;padding:24px">
+          <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#31423E">{{ t.quickTitle }}</div>
+          <div style="display:grid;gap:14px;margin-top:16px">
+            <div>
+              <div style="font-size:12px;color:#31423E">{{ t.labelWhere }}</div>
+              <div style="font-size:14.5px;color:#101A20;margin-top:3px;line-height:1.5">Intermédica · Consultorio 1112<br>Calle 7 #39-197, Medellín</div>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#31423E">{{ t.labelHours }}</div>
+              <div style="font-size:14.5px;color:#101A20;margin-top:3px;line-height:1.5">{{ t.hoursValue }}</div>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#31423E">{{ t.labelBook }}</div>
+              <div style="font-size:14.5px;color:#101A20;margin-top:3px"><a href="https://wa.me/573206816213" target="_blank" rel="noopener">+57 320 681 6213</a></div>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/573206816213" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#0F3B2D;color:#fff;border-radius:999px;padding:16px 24px;font-size:15px;font-weight:600" style-hover="background:#0A2A20;color:#fff">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B99A55" stroke-width="1.7" stroke-linecap="round"><path d="M4 20l1.5-4A8 8 0 1 1 12 20a8 8 0 0 1-4-1L4 20z"></path></svg>
+          {{ t.ctaBtn }}
+        </a>
+      </div>
+
+      <div style="flex:3 1 420px;min-width:0;display:grid;gap:12px;align-content:start">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="8">
+          <div style="background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:18px;padding:22px 26px">
+            <button onClick="{{ f.toggle }}" style="width:100%;background:none;border:0;padding:0;display:flex;gap:18px;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;font-family:'Instrument Sans',sans-serif;font-size:16.5px;font-weight:500;line-height:1.4;color:#101A20">
+              {{ f.q }}
+              <span style="font-size:20px;color:#8A6F2E;flex:none">{{ f.sign }}</span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:14.5px;line-height:1.75;color:#4B5A5A;margin-top:12px;max-width:70ch">{{ f.a }}</div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#0A2A20;color:#FFFFFF">
+    <div style="max-width:1100px;margin:0 auto;padding:clamp(30px,4vw,52px) clamp(18px,4vw,48px);display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center">
+      <div style="font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.78)">Dr. Andrés Palacio · {{ t.specialty }}<br>Intermédica 1112, Medellín · andres@drpalacio.com</div>
+      <a href="Landing Dr Palacio.dc.html" style="font-size:14px;font-weight:600;color:#B99A55" style-hover="color:#FFFFFF">← {{ t.back }}</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const FAQS = [
+  { es: ['¿Necesito tener un diagnóstico previo?', 'No. Puedes consultar por síntomas, resultados de laboratorio o una preocupación relacionada con tu salud metabólica u hormonal.'],
+    en: ['Do I need an existing diagnosis?', 'No. You can book a visit for symptoms, lab results or any concern about your metabolic or hormonal health.'] },
+  { es: ['¿Puedo llevar exámenes realizados previamente?', 'Sí. Llevar laboratorios, imágenes y la lista de tus medicamentos permite aprovechar mejor la consulta.'],
+    en: ['Can I bring previous test results?', 'Yes. Bringing lab work, imaging and your medication list makes the visit more productive.'] },
+  { es: ['¿La consulta es particular?', 'Sí, la consulta es particular.'],
+    en: ['Is the consultation private-pay?', 'Yes, consultations are private-pay.'] },
+  { es: ['¿La consulta está disponible en inglés?', 'Sí. La consulta está disponible en español e inglés.'],
+    en: ['Is the consultation available in English?', 'Yes. Consultations are available in English and Spanish.'] },
+  { es: ['¿Atiende pacientes fuera de Colombia?', 'Sí. La teleconsulta por videollamada está disponible para pacientes en Estados Unidos y Colombia, y no requiere ninguna visita presencial.'],
+    en: ['Do you see patients outside Colombia?', 'Yes. Video telemedicine is available for patients in the United States and Colombia, with no in-person visit required.'] },
+  { es: ['¿Cómo solicito una cita?', 'Por WhatsApp al +57 320 681 6213. Escríbeme y coordinamos el horario disponible.'],
+    en: ['How do I request an appointment?', 'By WhatsApp at +57 320 681 6213. Send a message and we will arrange an available time.'] },
+  { es: ['¿Qué áreas se atienden en la consulta?', 'Diabetes tipo 1 y tipo 2, obesidad y metabolismo, enfermedades tiroideas incluidos nódulos, riesgo cardiometabólico y lípidos, bombas de insulina y monitorización continua de glucosa, osteoporosis, salud hormonal femenina y salud hormonal masculina.'],
+    en: ['Which areas are covered in the consultation?', 'Type 1 and type 2 diabetes, obesity and metabolism, thyroid disease including nodules, cardiometabolic risk and lipids, insulin pumps and continuous glucose monitoring, osteoporosis, and hormonal health in women and men.'] },
+  { es: ['¿Cómo es el seguimiento después de la primera cita?', 'Al final de la consulta se define un plan individualizado y la frecuencia del seguimiento, según el motivo de consulta y los resultados que se necesiten revisar.'],
+    en: ['What does follow-up look like after the first visit?', 'At the end of the consultation we define an individualized plan and a follow-up schedule, based on your reason for the visit and the results that need review.'] }
+];
+
+const COPY = {
+  es: {
+    specialty: 'Medicina interna · Endocrinología',
+    back: 'Volver al inicio',
+    kicker: 'Preguntas frecuentes',
+    title: 'Todo lo que necesitas saber antes de tu consulta.',
+    lede: 'Si tu pregunta no está aquí, escríbeme por WhatsApp y te respondo directamente.',
+    quickTitle: 'Datos rápidos',
+    labelWhere: 'Dónde', labelHours: 'Horario', labelBook: 'Agendar por WhatsApp',
+    hoursValue: 'Lunes a jueves, 8:00 a.m. – 5:00 p.m. · Viernes, 8:00 a.m. – 1:00 p.m.',
+    ctaBtn: 'Solicitar cita'
+  },
+  en: {
+    specialty: 'Internal medicine · Endocrinology',
+    back: 'Back to home',
+    kicker: 'Frequently asked questions',
+    title: 'Everything you need to know before your visit.',
+    lede: 'If your question is not here, message me on WhatsApp and I will answer directly.',
+    quickTitle: 'Quick facts',
+    labelWhere: 'Where', labelHours: 'Office hours', labelBook: 'Book via WhatsApp',
+    hoursValue: 'Monday to Thursday, 8:00 a.m. – 5:00 p.m. · Friday, 8:00 a.m. – 1:00 p.m.',
+    ctaBtn: 'Request an appointment'
+  }
+};
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const nav = (typeof navigator !== 'undefined' && (navigator.language || '')) || '';
+    this.state = { lang: nav.toLowerCase().indexOf('es') === 0 ? 'es' : 'en', openFaq: 0 };
+  }
+
+  langBtn(active) {
+    return "font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;cursor:pointer;border:0;border-radius:999px;"
+      + (active ? 'background:#0F3B2D;color:#FFFFFF;' : 'background:transparent;color:#0F3B2D;');
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    return {
+      t: COPY[lang],
+      setEs: () => this.setState({ lang: 'es' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      esBtnStyle: this.langBtn(lang === 'es'),
+      enBtnStyle: this.langBtn(lang === 'en'),
+      faqs: FAQS.map((f, i) => ({
+        key: i,
+        q: f[lang][0],
+        a: f[lang][1],
+        open: this.state.openFaq === i,
+        sign: this.state.openFaq === i ? '–' : '+',
+        toggle: () => this.setState({ openFaq: this.state.openFaq === i ? -1 : i })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

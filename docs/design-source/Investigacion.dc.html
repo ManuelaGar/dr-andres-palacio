@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investigación y publicaciones | Dr. Andrés Palacio</title>
+<meta name="description" content="Publicaciones e investigación clínica del Dr. Andrés Palacio en diabetes, metabolismo, lípidos y tecnología aplicada al cuidado de la diabetes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#FBFAF8; color:#101A20; font-family:"Instrument Sans",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:#0F3B2D; text-decoration:none; }
+  a:hover { color:#0A2A20; }
+  html { scroll-behavior:smooth; }
+</style>
+</helmet>
+<div style="overflow-x:hidden">
+  <header style="position:sticky;top:0;z-index:50;background:rgba(251,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(16,26,32,.08)">
+    <div style="max-width:1100px;margin:0 auto;padding:14px clamp(18px,4vw,48px);display:flex;align-items:center;gap:20px;justify-content:space-between;flex-wrap:wrap">
+      <a href="Landing Dr Palacio.dc.html" style="display:flex;align-items:center;gap:12px">
+        <svg viewBox="0 0 120 96" width="46" height="37" fill="none" stroke="#0F3B2D" stroke-linecap="round" stroke-linejoin="round" style="flex:none;display:block"><path d="M6 88 L44 8 L82 88" stroke-width="5"></path><path d="M22 62 H66" stroke-width="4"></path><path d="M60 88 V26 H84 a19 19 0 0 1 0 38 H60" stroke-width="5"></path></svg>
+        <span style="line-height:1.3">
+          <span style="display:block;font-size:15px;font-weight:600;color:#101A20">Dr. Andrés Palacio</span>
+          <span style="display:block;font-size:10.5px;color:#55635F;margin-top:2px">{{ t.specialty }}</span>
+        </span>
+      </a>
+      <span style="display:flex;align-items:center;gap:12px">
+        <span style="display:flex;gap:4px;background:#EAF0EC;border-radius:999px;padding:4px">
+          <button onClick="{{ setEs }}" style="{{ esBtnStyle }}">ES</button>
+          <button onClick="{{ setEn }}" style="{{ enBtnStyle }}">EN</button>
+        </span>
+        <a href="Landing Dr Palacio.dc.html" style="font-size:14px;font-weight:600;color:#0F3B2D">← {{ t.back }}</a>
+      </span>
+    </div>
+  </header>
+
+  <section style="max-width:1100px;margin:0 auto;padding:clamp(34px,5vw,72px) clamp(18px,4vw,48px) clamp(20px,3vw,32px)">
+    <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#55635F">{{ t.kicker }}</div>
+    <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,5vw,64px);line-height:1.02;letter-spacing:-.025em;color:#0F3B2D;margin:18px 0 0;max-width:26ch">{{ t.title }}</h1>
+    <p style="margin:20px 0 0;max-width:62ch;font-size:16.5px;line-height:1.75;color:#4B5A5A">{{ t.lede }}</p>
+    <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:10px">
+      <span style="background:#EAF0EC;color:#0F3B2D;border-radius:999px;padding:9px 15px;font-size:13px">{{ t.tagGroup }}</span>
+      <span style="background:#EAF0EC;color:#0F3B2D;border-radius:999px;padding:9px 15px;font-size:13px">Emory University · CES · UPB</span>
+      <span style="background:#EAF0EC;color:#0F3B2D;border-radius:999px;padding:9px 15px;font-size:13px">{{ t.tagYears }}</span>
+    </div>
+  </section>
+
+  <section style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,4vw,48px) clamp(40px,6vw,80px)">
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+      <div style="margin-top:clamp(30px,4vw,52px)">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0F3B2D">{{ g.title }}</span>
+          <span style="flex:1;height:1px;background:rgba(16,26,32,.12)"></span>
+          <span style="font-size:12px;color:#55635F">{{ g.count }}</span>
+        </div>
+        <div style="display:grid;gap:12px">
+          <sc-for list="{{ g.items }}" as="p" hint-placeholder-count="4">
+            <div style="background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:18px;padding:22px 26px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between">
+              <div style="flex:1 1 380px;min-width:0">
+                <div style="font-size:16.5px;font-weight:500;line-height:1.45;color:#101A20">{{ p.title }}</div>
+                <div style="font-size:13px;color:#55635F;margin-top:7px">{{ p.source }}</div>
+              </div>
+              <sc-if value="{{ p.hasLink }}" hint-placeholder-val="{{ false }}">
+                <a href="{{ p.link }}" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:600;color:#0F3B2D;background:#EAF0EC;border-radius:999px;padding:11px 18px;white-space:nowrap" style-hover="background:#DCE7DF;color:#0A2A20">{{ t.viewPub }}</a>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+    <p style="margin:34px 0 0;font-size:13px;color:#55635F;max-width:70ch">{{ t.note }}</p>
+  </section>
+
+  <section style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,4vw,48px) clamp(48px,7vw,96px)">
+    <div style="background:#0F3B2D;border-radius:26px;padding:clamp(28px,4vw,52px);display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+      <div style="max-width:52ch">
+        <div style="font-family:'Instrument Serif',serif;font-size:clamp(22px,2.6vw,32px);line-height:1.2;color:#FFFFFF">{{ t.ctaTitle }}</div>
+        <div style="font-size:15px;line-height:1.7;color:rgba(255,255,255,.85);margin-top:10px">{{ t.ctaBody }}</div>
+      </div>
+      <a href="https://wa.me/573206816213" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#B99A55;color:#101A20;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:600" style-hover="background:#CCAC63;color:#101A20">{{ t.ctaBtn }}</a>
+    </div>
+  </section>
+
+  <footer style="background:#0A2A20;color:#FFFFFF">
+    <div style="max-width:1100px;margin:0 auto;padding:clamp(30px,4vw,52px) clamp(18px,4vw,48px);display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center">
+      <div style="font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.78)">Dr. Andrés Palacio · {{ t.specialty }}<br>Intermédica 1112, Medellín · +57 320 681 6213</div>
+      <a href="Landing Dr Palacio.dc.html" style="font-size:14px;font-weight:600;color:#B99A55" style-hover="color:#FFFFFF">← {{ t.back }}</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const GROUPS = [
+  {
+    es: 'Diabetes, tecnología y desenlaces clínicos', en: 'Diabetes, technology and clinical outcomes',
+    items: [
+      { title: 'Randomized Study of Basal Bolus Insulin Therapy in the Inpatient Management of Patients with Type 2 Diabetes (RABBIT 2 Trial)', source: 'Diabetes Care · 2007', link: '' },
+      { title: 'Clinical Outcomes After 1 Year of Augmented Insulin Pump Therapy in Patients with Diabetes in a Specialized Diabetes Center in Medellín, Colombia', source: 'Diabetes Technology & Therapeutics · 2016; 18(11): 713–718', link: '' },
+      { title: 'Maternal and perinatal outcomes in pregnant women with type 1 diabetes treated with continuous subcutaneous insulin infusion and real-time continuous glucose monitoring in two specialized centers in Medellín, Colombia', source: 'The Journal of Maternal-Fetal & Neonatal Medicine · 2017', link: '' },
+      { title: 'Real-world effectiveness and safety of sensor-augmented insulin pump therapy in adults with type 1 diabetes: Long-term follow-up', source: 'Endocrinología, Diabetes y Nutrición · 2020', link: 'https://doi.org/10.1016/j.endinu.2020.07.012' },
+      { title: 'The effectiveness of a comprehensive diabetes program for glycemic control and adherence, and the selection of candidates for sensor-augmented insulin pump therapy', source: 'Endocrinología, Diabetes y Nutrición · 2020', link: 'https://doi.org/10.1016/j.endinu.2020.11.006' },
+      { title: 'Epidemiological characterization of diabetic patients on therapy with continuous subcutaneous insulin infusion and continuous glucose monitoring in real time', source: 'Endocrinología y Nutrición · 2015', link: 'https://doi.org/10.1016/j.endonu.2015.05.014' },
+      { title: 'Sitagliptina versus insulina en pacientes hospitalizados con diabetes tipo 2. Estudio comparativo de costos', source: 'CES Medicina · 2015; 29(1): 89–100', link: '' }
+    ]
+  },
+  {
+    es: 'Metabolismo, lípidos y riesgo cardiovascular', en: 'Metabolism, lipids and cardiovascular risk',
+    items: [
+      { title: 'Free Fatty Acid Infusion and Vascular Function in Obese African-Americans with the Metabolic Syndrome', source: 'Circulation · 2006; 114(18)', link: '' },
+      { title: 'High Prevalence of Primary Aldosteronism in Diabetic Patients with Resistant Hypertension', source: 'Emory University · Post Doc and Fellow Research Day · 2006', link: '' },
+      { title: 'Primary Aldosteronism in Diabetic Subjects with Resistant Hypertension', source: 'Diabetes Care · 2007', link: '' },
+      { title: 'Síndrome de Cushing exógeno e insuficiencia adrenal relacionada con consumo de producto natural', source: 'Acta Médica Colombiana · 2017; 42(4)', link: '' }
+    ]
+  },
+  {
+    es: 'Capítulos de libro y consensos', en: 'Book chapters and consensus statements',
+    items: [
+      { title: 'Crisis hiperglucémicas en el adulto', source: 'Texto de Medicina Interna · Aprendizaje basado en problemas · Cap. 86, pp. 947–956 · 2013', link: '' },
+      { title: 'Urgencias endocrinas', source: 'Texto de Medicina Interna · Aprendizaje basado en problemas · Cap. 87, pp. 957–971 · 2013', link: '' },
+      { title: 'Consenso médico de biopsia por aspiración con aguja fina de tiroides. Bethesda System for Reporting Thyroid Cytopathology', source: 'Medicina & Laboratorio · 2013; 19(11-12)', link: '' },
+      { title: 'Bombas de insulina en diabetes tipo 2: del fundamento a la práctica', source: 'Revista CES Medicina · 2017; 31(1)', link: '' }
+    ]
+  },
+  {
+    es: 'Educación, adherencia y experiencia del paciente', en: 'Education, adherence and patient experience',
+    items: [
+      { title: 'Lack of Follow-Up Care: A Major Obstacle to Optimal Care in Latinos with Diabetes', source: 'Society of General Internal Medicine · 2006', link: '' },
+      { title: 'Teaching Diabetes to Middle-School Students with the AIDA Online Diabetes Software Simulator', source: 'Journal of Diabetes Science and Technology · 2007; 1(1)', link: '' },
+      { title: 'Preferencias de los pacientes en programas de seguimiento terapéutico: experimento de elección discreta', source: 'Vitae · Universidad de Antioquia · 2015; 22 (Supl. 1)', link: '' },
+      { title: 'Programas de atención clínica en diabetes: medición de resultados con un enfoque integral', source: 'Vitae · 2015; 22 (Supl. 1): S31–S32', link: '' }
+    ]
+  }
+];
+
+const COPY = {
+  es: {
+    specialty: 'Medicina interna · Endocrinología',
+    back: 'Volver al inicio',
+    kicker: 'Investigación y publicaciones',
+    title: 'Investigación clínica en diabetes, metabolismo y prevención cardiometabólica.',
+    lede: 'Más de dos décadas de trabajo académico entre Colombia y Estados Unidos: ensayos clínicos en manejo hospitalario de la diabetes, tecnología de infusión y monitorización continua, lípidos y riesgo cardiovascular, y capítulos de texto para formación médica.',
+    tagGroup: 'Grupo de investigación IDEAS · CLID',
+    tagYears: 'Publicaciones 1998–2020',
+    viewPub: 'Ver publicación →',
+    note: 'Selección de publicaciones tomada de la hoja de vida académica. Los enlaces se incluyen únicamente cuando existe DOI verificado; la hoja de vida completa está disponible a solicitud.',
+    ctaTitle: '¿Tienes una pregunta clínica o académica?',
+    ctaBody: 'Para consultas de pacientes, segundas opiniones o colaboración académica, escríbeme por WhatsApp.',
+    ctaBtn: 'Escribir por WhatsApp'
+  },
+  en: {
+    specialty: 'Internal medicine · Endocrinology',
+    back: 'Back to home',
+    kicker: 'Research and publications',
+    title: 'Clinical research in diabetes, metabolism and cardiometabolic prevention.',
+    lede: 'More than two decades of academic work across Colombia and the United States: clinical trials in inpatient diabetes management, insulin pump and continuous glucose monitoring technology, lipids and cardiovascular risk, and textbook chapters for medical training.',
+    tagGroup: 'IDEAS research group · CLID',
+    tagYears: 'Publications 1998–2020',
+    viewPub: 'View publication →',
+    note: 'Selected publications taken from the academic CV. Links are included only where a verified DOI exists; the full CV is available on request.',
+    ctaTitle: 'Have a clinical or academic question?',
+    ctaBody: 'For patient consultations, second opinions or academic collaboration, message me on WhatsApp.',
+    ctaBtn: 'Message on WhatsApp'
+  }
+};
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const nav = (typeof navigator !== 'undefined' && (navigator.language || '')) || '';
+    this.state = { lang: nav.toLowerCase().indexOf('es') === 0 ? 'es' : 'en' };
+  }
+
+  langBtn(active) {
+    return "font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;cursor:pointer;border:0;border-radius:999px;"
+      + (active ? 'background:#0F3B2D;color:#FFFFFF;' : 'background:transparent;color:#0F3B2D;');
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    return {
+      t: COPY[lang],
+      setEs: () => this.setState({ lang: 'es' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      esBtnStyle: this.langBtn(lang === 'es'),
+      enBtnStyle: this.langBtn(lang === 'en'),
+      groups: GROUPS.map((g, i) => ({
+        key: i,
+        title: g[lang],
+        count: g.items.length + (lang === 'es' ? ' publicaciones' : ' publications'),
+        items: g.items.map((p, j) => ({ key: j, title: p.title, source: p.source, link: p.link, hasLink: !!p.link }))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

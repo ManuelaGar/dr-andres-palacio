@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr. Andrés Palacio | Internista y Endocrinólogo en Medellín</title>
+<meta name="description" content="Médico internista y endocrinólogo en Medellín. Consulta particular en diabetes, obesidad, tiroides, osteoporosis y medicina interna. Atención en español e inglés.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #FBFAF8; color: #101A20; font-family: "Instrument Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #0F3B2D; text-decoration: none; }
+  a:hover { color: #0A2A20; }
+  html { scroll-behavior: smooth; }
+</style>
+</helmet>
+
+<div style="overflow-x:hidden;background:#FBFAF8">
+
+  <header style="position:sticky;top:0;z-index:50;background:rgba(251,250,248,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(16,26,32,.08)">
+    <div style="max-width:1240px;margin:0 auto;padding:14px clamp(18px,4vw,48px);display:flex;align-items:center;gap:24px;justify-content:space-between">
+      <a href="#inicio" style="display:flex;align-items:center;gap:12px;flex:none">
+        <svg viewBox="0 0 120 96" width="46" height="37" fill="none" stroke="#0F3B2D" stroke-linecap="round" stroke-linejoin="round" style="flex:none;display:block"><path d="M6 88 L44 8 L82 88" stroke-width="5"></path><path d="M22 62 H66" stroke-width="4"></path><path d="M60 88 V26 H84 a19 19 0 0 1 0 38 H60" stroke-width="5"></path></svg>
+        <span style="line-height:1.3">
+          <span style="display:block;font-size:15px;font-weight:600;color:#101A20">Dr. Andrés Palacio</span>
+          <span style="display:block;font-size:10.5px;color:#55635F;margin-top:2px">{{ t.specialty }}</span>
+        </span>
+      </a>
+      <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;gap:clamp(12px,1.8vw,26px);align-items:center;flex-wrap:wrap;justify-content:flex-end">
+          <a href="#sobre-mi" style="font-size:14px;color:#31423E">{{ t.navAbout }}</a>
+          <a href="#servicios" style="font-size:14px;color:#31423E">{{ t.navServices }}</a>
+          <a href="#consulta" style="font-size:14px;color:#31423E">{{ t.navVisit }}</a>
+          <a href="Investigacion.dc.html" style="font-size:14px;color:#31423E">{{ t.navResearch }}</a>
+          <a href="#contacto" style="font-size:14px;color:#31423E">{{ t.navContact }}</a>
+          <span style="display:flex;gap:4px;background:#EAF0EC;border-radius:999px;padding:4px">
+            <button onClick="{{ setEs }}" style="{{ esBtnStyle }}">ES</button>
+            <button onClick="{{ setEn }}" style="{{ enBtnStyle }}">EN</button>
+          </span>
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#0F3B2D;color:#fff;border-radius:999px;padding:12px 20px;font-size:14px;font-weight:600" style-hover="background:#0A2A20;color:#fff">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#B99A55" stroke-width="1.7" stroke-linecap="round"><path d="M4 20l1.5-4A8 8 0 1 1 12 20a8 8 0 0 1-4-1L4 20z"></path></svg>
+            WhatsApp
+          </a>
+        </nav>
+      </sc-if>
+      <sc-if value="{{ isNarrow }}" hint-placeholder-val="{{ false }}">
+        <span style="display:flex;align-items:center;gap:10px">
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#0F3B2D" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#B99A55" stroke-width="1.7" stroke-linecap="round"><path d="M4 20l1.5-4A8 8 0 1 1 12 20a8 8 0 0 1-4-1L4 20z"></path></svg>
+          </a>
+          <button onClick="{{ toggleNav }}" aria-label="Menú" style="width:46px;height:46px;border-radius:14px;border:1px solid rgba(16,26,32,.14);background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0">
+            <span style="display:block;width:20px;height:2px;border-radius:2px;background:#0F3B2D;flex:none"></span>
+            <span style="display:block;width:20px;height:2px;border-radius:2px;background:#0F3B2D;flex:none"></span>
+            <span style="display:block;width:20px;height:2px;border-radius:2px;background:#0F3B2D;flex:none"></span>
+          </button>
+        </span>
+      </sc-if>
+    </div>
+    <sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="border-top:1px solid rgba(16,26,32,.08);padding:16px clamp(18px,4vw,48px) 22px;display:grid;gap:14px;background:#FBFAF8">
+        <a href="#sobre-mi" onClick="{{ closeNav }}" style="font-size:16px;color:#101A20">{{ t.navAbout }}</a>
+        <a href="#servicios" onClick="{{ closeNav }}" style="font-size:16px;color:#101A20">{{ t.navServices }}</a>
+        <a href="#consulta" onClick="{{ closeNav }}" style="font-size:16px;color:#101A20">{{ t.navVisit }}</a>
+        <a href="Investigacion.dc.html" style="font-size:16px;color:#101A20">{{ t.navResearch }}</a>
+        <a href="Preguntas Frecuentes.dc.html" style="font-size:16px;color:#101A20">{{ t.faqTitle }}</a>
+        <a href="#contacto" onClick="{{ closeNav }}" style="font-size:16px;color:#101A20">{{ t.navContact }}</a>
+        <span style="display:flex;gap:4px;background:#EAF0EC;border-radius:999px;padding:4px;width:max-content">
+          <button onClick="{{ setEs }}" style="{{ esBtnStyle }}">ES</button>
+          <button onClick="{{ setEn }}" style="{{ enBtnStyle }}">EN</button>
+        </span>
+      </div>
+    </sc-if>
+  </header>
+
+  <section id="inicio" style="max-width:1240px;margin:0 auto;padding:clamp(26px,4vw,52px) clamp(18px,4vw,48px) clamp(30px,4vw,56px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(26px,4vw,52px);align-items:center">
+      <div>
+        <sc-if value="{{ notPhone }}" hint-placeholder-val="{{ true }}">
+          <div style="display:inline-flex;align-items:center;gap:9px;background:#EAF0EC;color:#0F3B2D;border-radius:999px;padding:8px 15px;font-size:13px;font-weight:500">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#0F3B2D" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17"></path></svg>
+            {{ t.bilingual }}
+          </div>
+        </sc-if>
+        <sc-if value="{{ isPhone }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="flex:none;width:64px;height:64px;border-radius:50%;overflow:hidden;background:#EAF0EC">
+              <img src="andres-palacio-retrato.jpg" alt="Dr. Andrés Palacio, médico internista y endocrinólogo" style="width:100%;height:100%;object-fit:cover;object-position:50% 26%;display:block">
+            </span>
+            <span style="flex:1 1 auto;min-width:0;font-size:13px;line-height:1.45;color:#55635F">{{ t.specialty }}<br>{{ t.heroMeta }}</span>
+          </div>
+          <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(42px,15vw,62px);line-height:.88;letter-spacing:-.04em;color:#0F3B2D;margin:22px 0 0">Dr. Andrés Palacio</h1>
+        </sc-if>
+        <sc-if value="{{ notPhone }}" hint-placeholder-val="{{ true }}">
+          <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5.8vw,74px);line-height:.96;letter-spacing:-.025em;color:#0F3B2D;margin:20px 0 0">Dr. Andrés<br>Palacio</h1>
+        </sc-if>
+        <sc-if value="{{ notPhone }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:12px;font-size:15px;font-weight:500;color:#55635F">{{ t.specialty }}</div>
+        </sc-if>
+        <p style="margin:22px 0 0;max-width:44ch;font-size:clamp(15.5px,1.5vw,17.5px);line-height:1.7;color:#4B5A5A">{{ t.heroLede }}</p>
+        <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:12px">
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#0F3B2D;color:#fff;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:600" style-hover="background:#0A2A20;color:#fff">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B99A55" stroke-width="1.7" stroke-linecap="round"><path d="M4 20l1.5-4A8 8 0 1 1 12 20a8 8 0 0 1-4-1L4 20z"></path></svg>
+            {{ t.ctaWhatsapp }}
+          </a>
+          <a href="mailto:andres@drpalacio.com" style="display:inline-flex;align-items:center;gap:10px;color:#0F3B2D;background:#fff;border:1px solid rgba(15,59,45,.22);border-radius:999px;padding:16px 26px;font-size:15px;font-weight:600" style-hover="border-color:#0F3B2D;background:#F4F8F5">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0F3B2D" stroke-width="1.4" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6l8.5 7 8.5-7"></path></svg>
+            {{ t.ctaEmail }}
+          </a>
+        </div>
+        <div style="margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:18px">
+          <span style="font-size:13px;color:#55635F">{{ t.followMe }}</span>
+          <a href="https://x.com/palacioendocrin" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#31423E">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="#101A20"><path d="M18.9 2H22l-6.8 7.8L22.8 22h-6.3l-4.6-6.2L6.2 22H3l7.3-8.3L2.6 2h6.4l4.3 5.8L18.9 2zm-1.1 18h1.7L7.3 3.8H5.5L17.8 20z"></path></svg>
+            @palacioendocrin
+          </a>
+          <a href="https://substack.com/@andrespalacio1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#31423E">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="#101A20"><path d="M4 3h16v2.6H4V3zm0 4.6h16V11H4V7.6zM4 13l8 4.4 8-4.4v8L12 17l-8 4v-8z"></path></svg>
+            @andrespalacio1
+          </a>
+        </div>
+      </div>
+      <div style="position:relative;display:var(--hero-photo,block)">
+        <div style="border-radius:26px;overflow:hidden;background:#EAF0EC;box-shadow:0 30px 60px -36px rgba(16,26,32,.45);aspect-ratio:1/1">
+          <img src="andres-palacio-retrato.jpg" alt="Dr. Andrés Palacio, médico internista y endocrinólogo" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block">
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(52px,6vw,72px);display:flex;flex-wrap:wrap;gap:14px">
+      <div style="flex:1 1 var(--contact-basis, calc(25% - 11px));min-width:0;box-sizing:border-box;display:flex;gap:13px;align-items:center;background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:16px;padding:16px">
+        <span style="display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#0F3B2D" stroke-width="1.4" stroke-linecap="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.3"></circle></svg></span>
+        <div><div style="font-size:12px;color:#55635F">{{ t.location }}</div><div style="font-size:14px;color:#101A20;margin-top:2px;line-height:1.45">Intermédica 1112<br>Medellín, Colombia</div></div>
+      </div>
+      <div style="flex:1 1 var(--contact-basis, calc(25% - 11px));min-width:0;box-sizing:border-box;display:flex;gap:13px;align-items:center;background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:16px;padding:16px">
+        <span style="display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#0F3B2D" stroke-width="1.5" stroke-linecap="round"><path d="M4 20l1.5-4A8 8 0 1 1 12 20a8 8 0 0 1-4-1L4 20z"></path></svg></span>
+        <div><div style="font-size:12px;color:#55635F">WhatsApp</div><div style="font-size:14px;color:#101A20;margin-top:2px"><a href="{{ waLink }}" target="_blank" rel="noopener">+57 320 681 6213</a></div></div>
+      </div>
+      <div style="flex:1 1 var(--contact-basis, calc(25% - 11px));min-width:0;box-sizing:border-box;display:flex;gap:13px;align-items:center;background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:16px;padding:16px">
+        <span style="display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#0F3B2D" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg></span>
+        <div><div style="font-size:12px;color:#55635F">{{ t.hours }}</div><div style="font-size:14px;color:#101A20;margin-top:2px;line-height:1.45">{{ t.hoursShort }}</div></div>
+      </div>
+      <div style="flex:1 1 var(--contact-basis, calc(25% - 11px));min-width:0;box-sizing:border-box;display:flex;gap:13px;align-items:center;background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:16px;padding:16px">
+        <span style="display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#0F3B2D" stroke-width="1.4" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6l8.5 7 8.5-7"></path></svg></span>
+        <div style="min-width:0"><div style="font-size:12px;color:#55635F">Email</div><div style="font-size:14px;color:#101A20;margin-top:2px;overflow-wrap:anywhere"><a href="mailto:andres@drpalacio.com">andres@drpalacio.com</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,80px) clamp(18px,4vw,48px)">
+    <div style="background:#F2EDE4;border-radius:26px;padding:clamp(34px,6vw,76px) clamp(24px,5vw,64px);text-align:center;display:grid;justify-items:center;gap:26px">
+      <div style="font-family:'Instrument Serif',serif;font-size:clamp(23px,3.2vw,40px);line-height:1.3;letter-spacing:-.015em;color:#101A20;max-width:34ch;text-wrap:pretty">{{ t.quote }}</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <img src="firma-andres-palacio.png" alt="Firma del Dr. Andrés Palacio" style="height:64px;width:auto">
+        <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:17px;color:#4B5A5A">Andrés Palacio</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre-mi" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,88px) clamp(18px,4vw,48px)">
+    <div style="display:flex;flex-wrap:wrap;gap:16px">
+      <div style="flex:1 1 var(--col3, calc(33.333% - 11px));min-width:0;box-sizing:border-box;background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:22px;padding:clamp(26px,3vw,38px)">
+        <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#55635F;margin-bottom:20px">{{ t.aboutTitle }}</div>
+        <p style="margin:0 0 16px;font-size:16px;line-height:1.75;color:#4B5A5A">{{ t.aboutP1 }}</p>
+        <p style="margin:0 0 20px;font-size:16px;line-height:1.75;color:#4B5A5A">{{ t.aboutP2 }}</p>
+        <div style="display:inline-flex;background:#EAF0EC;border-radius:999px;padding:7px 14px;font-size:12.5px;color:#31423E">{{ t.license }}</div>
+      </div>
+      <div style="flex:1 1 var(--col3, calc(33.333% - 11px));min-width:0;box-sizing:border-box;background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:22px;padding:clamp(26px,3vw,38px)">
+        <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#55635F;margin-bottom:20px">{{ t.educationTitle }}</div>
+        <div style="display:grid;gap:18px">
+          <sc-for list="{{ education }}" as="e" hint-placeholder-count="4">
+            <div>
+              <div style="font-size:15px;font-weight:600;color:#101A20;line-height:1.4">{{ e.title }}</div>
+              <div style="font-size:13.5px;color:#55635F;margin-top:4px;line-height:1.5">{{ e.detail }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:1 1 var(--auth-basis, calc(33.333% - 11px));min-width:0;box-sizing:border-box;background:#0F3B2D;border-radius:22px;padding:clamp(26px,3vw,38px);display:grid;gap:24px;align-content:start">
+        <sc-for list="{{ authority }}" as="b" hint-placeholder-count="3">
+          <div>
+            <div style="font-size:19px;font-weight:600;color:#FFFFFF;margin-bottom:7px">{{ b.title }}</div>
+            <div style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.82)">{{ b.detail }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,88px) clamp(18px,4vw,48px)">
+    <div style="max-width:58ch">
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1.05;letter-spacing:-.02em;color:#0F3B2D;margin:0">{{ t.servicesTitle }}</h2>
+      <p style="margin:18px 0 0;font-size:16px;line-height:1.7;color:#4B5A5A">{{ t.servicesLede }}</p>
+    </div>
+    <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:16px">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="8">
+        <div style="flex:1 1 var(--card-basis, calc(25% - 12px));min-width:0;box-sizing:border-box;background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:18px;padding:var(--card-padding,28px);transition:box-shadow .25s,transform .25s" style-hover="box-shadow:0 22px 44px -28px rgba(16,26,32,.4);transform:translateY(-3px)">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+            <span style="display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:#EAF0EC;flex:none" dangerouslySetInnerHTML="{{ s.icon }}"></span>
+            <sc-if value="{{ isPhone }}" hint-placeholder-val="{{ false }}">
+              <span style="flex:1 1 auto;min-width:0;font-size:18px;font-weight:600;letter-spacing:-.01em;color:#101A20;line-height:1.25">{{ s.title }}</span>
+            </sc-if>
+            <sc-if value="{{ notPhone }}" hint-placeholder-val="{{ true }}">
+              <span style="font-size:12.5px;color:#8A6F2E;font-weight:600">{{ s.num }}</span>
+            </sc-if>
+          </div>
+          <sc-if value="{{ notPhone }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:21px;font-weight:600;letter-spacing:-.01em;color:#101A20;margin:18px 0 8px;line-height:1.25">{{ s.title }}</div>
+          </sc-if>
+          <sc-if value="{{ s.showBody }}" hint-placeholder-val="{{ true }}"><div style="font-size:14px;line-height:1.7;color:#4B5A5A">{{ s.body }}</div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="consulta" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,88px) clamp(18px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,3vw,44px);align-items:end">
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1.05;letter-spacing:-.02em;color:#0F3B2D;margin:0;max-width:22ch">{{ t.visitTitle }}</h2>
+      <p style="margin:0;font-size:16px;line-height:1.7;color:#4B5A5A;max-width:44ch">{{ t.visitLede }}</p>
+    </div>
+
+    <div style="margin-top:clamp(36px,5vw,64px);position:relative">
+      <div style="position:absolute;left:26px;right:var(--line-right,26px);top:26px;bottom:var(--line-bottom,auto);height:var(--line-h,2px);width:var(--line-w,auto);background:var(--timeline-line, linear-gradient(90deg,#0F3B2D 0%,#0F3B2D 78%,rgba(15,59,45,.15) 100%))"></div>
+      <div style="position:relative;display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,28px)">
+        <sc-for list="{{ steps }}" as="p" hint-placeholder-count="4">
+          <div style="flex:1 1 var(--step-basis, calc(25% - 21px));min-width:0;box-sizing:border-box;display:var(--step-display,block);gap:18px;align-items:flex-start">
+            <div style="flex:none;display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:{{ p.dotBg }};color:{{ p.dotInk }};font-family:'Instrument Serif',serif;font-size:22px;line-height:1;box-shadow:0 0 0 6px #FBFAF8">{{ p.num }}</div>
+            <div style="min-width:0">
+              <div style="font-size:19px;font-weight:600;color:#101A20;margin:var(--step-title-mt,20px) 0 8px">{{ p.title }}</div>
+              <div style="font-size:14px;line-height:1.7;color:#4B5A5A">{{ p.body }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(28px,4vw,48px);background:#EAF0EC;border-radius:22px;padding:clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+      <div style="max-width:56ch">
+        <div style="font-size:17px;font-weight:600;color:#0A2A20">{{ t.teleTitle }}</div>
+        <div style="font-size:15px;line-height:1.65;color:#31423E;margin-top:6px">{{ t.teleBody }}</div>
+      </div>
+      <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#0F3B2D;color:#fff;border-radius:999px;padding:15px 26px;font-size:15px;font-weight:600" style-hover="background:#0A2A20;color:#fff">{{ t.ctaWhatsapp }}</a>
+    </div>
+  </section>
+
+  <section id="ideas" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,88px) clamp(18px,4vw,48px)">
+    <div style="background:#F2EDE4;border-radius:22px;padding:clamp(28px,4vw,52px);display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,44px);align-items:center">
+      <div style="flex:1 1 320px;min-width:0">
+        <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6B6252;margin-bottom:16px">{{ t.ideasTitle }}</div>
+        <p style="margin:0;font-size:16.5px;line-height:1.75;color:#4B5A5A;max-width:50ch">{{ t.ideasBody }}</p>
+        <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:12px">
+          <a href="https://substack.com/@andrespalacio1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#0F3B2D;color:#fff;border-radius:999px;padding:15px 24px;font-size:15px;font-weight:600" style-hover="background:#0A2A20;color:#fff">{{ t.ctaSubstack }}</a>
+          <a href="https://x.com/palacioendocrin" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;color:#0F3B2D;background:#FFFFFF;border-radius:999px;padding:15px 24px;font-size:15px;font-weight:600" style-hover="background:#F4F8F5;color:#0A2A20">{{ t.ctaX }}</a>
+        </div>
+      </div>
+      <div style="flex:1 1 260px;min-width:0;display:grid;gap:12px">
+        <div style="display:flex;align-items:center;gap:13px;background:#FFFFFF;border-radius:16px;padding:18px">
+          <span style="display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="18" height="18" fill="#0F3B2D"><path d="M4 3h16v2.6H4V3zm0 4.6h16V11H4V7.6zM4 13l8 4.4 8-4.4v8L12 17l-8 4v-8z"></path></svg></span>
+          <span style="font-size:14.5px;color:#101A20">Substack · @andrespalacio1</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:13px;background:#FFFFFF;border-radius:16px;padding:18px">
+          <span style="display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="16" height="16" fill="#101A20"><path d="M18.9 2H22l-6.8 7.8L22.8 22h-6.3l-4.6-6.2L6.2 22H3l7.3-8.3L2.6 2h6.4l4.3 5.8L18.9 2zm-1.1 18h1.7L7.3 3.8H5.5L17.8 20z"></path></svg></span>
+          <span style="font-size:14.5px;color:#101A20">X · @palacioendocrin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,88px) clamp(18px,4vw,48px)">
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1.05;letter-spacing:-.02em;color:#0F3B2D;margin:0">{{ t.contactTitle }}</h2>
+    <div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:16px">
+      <div style="flex:1 1 320px;min-width:0;background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:22px;padding:clamp(26px,3vw,38px);display:grid;gap:20px;align-content:start">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <span style="display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#0F3B2D" stroke-width="1.4" stroke-linecap="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.3"></circle></svg></span>
+          <div style="min-width:0"><div style="font-size:12px;color:#55635F">{{ t.location }}</div><div style="font-size:15px;line-height:1.55;color:#101A20;margin-top:3px">Intermédica · Consultorio 1112<br>Calle 7 #39-197, Medellín</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <span style="display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#0F3B2D" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg></span>
+          <div style="min-width:0"><div style="font-size:12px;color:#55635F">{{ t.hours }}</div><div style="font-size:15px;line-height:1.55;color:#101A20;margin-top:3px">{{ t.hoursValue }}</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <span style="display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#0F3B2D" stroke-width="1.5" stroke-linecap="round"><path d="M4 20l1.5-4A8 8 0 1 1 12 20a8 8 0 0 1-4-1L4 20z"></path></svg></span>
+          <div style="min-width:0"><div style="font-size:12px;color:#55635F">WhatsApp</div><div style="font-size:15px;line-height:1.55;color:#101A20;margin-top:3px"><a href="{{ waLink }}" target="_blank" rel="noopener">+57 320 681 6213</a></div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <span style="display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#EAF0EC;flex:none"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#0F3B2D" stroke-width="1.4" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6l8.5 7 8.5-7"></path></svg></span>
+          <div style="min-width:0"><div style="font-size:12px;color:#55635F">Email</div><div style="font-size:15px;line-height:1.55;color:#101A20;margin-top:3px;overflow-wrap:anywhere"><a href="mailto:andres@drpalacio.com">andres@drpalacio.com</a></div></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px">
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#0F3B2D;color:#fff;border-radius:999px;padding:16px 24px;font-size:15px;font-weight:600" style-hover="background:#0A2A20;color:#fff">{{ t.ctaRequest }}</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Edificio+Intermedica+Calle+7+%2339-197+Medellin" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;color:#0F3B2D;border:1px solid rgba(15,59,45,.22);border-radius:999px;padding:16px 24px;font-size:15px;font-weight:600" style-hover="border-color:#0F3B2D;background:#F4F8F5">{{ t.ctaDirections }}</a>
+        </div>
+      </div>
+      <div style="flex:1 1 320px;min-width:0;border-radius:22px;overflow:hidden;border:1px solid rgba(16,26,32,.08);min-height:380px;background:#EAF0EC">
+        <iframe src="https://www.google.com/maps?q=Calle%207%20%2339-197%20Medellin%20Colombia&output=embed" title="Mapa del consultorio" style="width:100%;height:100%;min-height:380px;border:0;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,88px) clamp(18px,4vw,48px)">
+    <div style="display:flex;flex-wrap:wrap;gap:16px">
+      <a href="Investigacion.dc.html" style="flex:1 1 calc(50% - 8px);min-width:260px;box-sizing:border-box;background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:22px;padding:clamp(26px,3vw,38px);display:grid;gap:14px;align-content:start;transition:box-shadow .25s,transform .25s" style-hover="box-shadow:0 22px 44px -28px rgba(16,26,32,.4);transform:translateY(-3px)">
+        <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#55635F">{{ t.researchTitle }}</span>
+        <span style="font-family:'Instrument Serif',serif;font-size:clamp(23px,2.6vw,32px);line-height:1.15;letter-spacing:-.02em;color:#0F3B2D">{{ t.researchTeaser }}</span>
+        <span style="font-size:14.5px;line-height:1.7;color:#4B5A5A">{{ t.researchLede }}</span>
+        <span style="font-size:14px;font-weight:600;color:#0F3B2D">{{ t.seeAll }} →</span>
+      </a>
+      <a href="Preguntas Frecuentes.dc.html" style="flex:1 1 calc(50% - 8px);min-width:260px;box-sizing:border-box;background:#EAF0EC;border-radius:22px;padding:clamp(26px,3vw,38px);display:grid;gap:14px;align-content:start;transition:box-shadow .25s,transform .25s" style-hover="box-shadow:0 22px 44px -28px rgba(16,26,32,.4);transform:translateY(-3px)">
+        <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#31423E">{{ t.faqTitle }}</span>
+        <span style="font-family:'Instrument Serif',serif;font-size:clamp(23px,2.6vw,32px);line-height:1.15;letter-spacing:-.02em;color:#0F3B2D">{{ t.faqTeaser }}</span>
+        <span style="font-size:14.5px;line-height:1.7;color:#31423E">{{ t.faqLede }}</span>
+        <span style="font-size:14px;font-weight:600;color:#0F3B2D">{{ t.seeAll }} →</span>
+      </a>
+    </div>
+  </section>
+
+  <footer style="background:#0A2A20;color:#FFFFFF;margin-top:clamp(24px,4vw,48px)">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,72px) clamp(18px,4vw,48px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <svg viewBox="0 0 120 96" width="46" height="37" fill="none" stroke="#FBFAF8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;display:block"><path d="M6 88 L44 8 L82 88" stroke-width="5"></path><path d="M22 62 H66" stroke-width="4"></path><path d="M60 88 V26 H84 a19 19 0 0 1 0 38 H60" stroke-width="5"></path></svg>
+            <span style="line-height:1.3">
+              <span style="display:block;font-size:15px;font-weight:600">Dr. Andrés Palacio</span>
+              <span style="display:block;font-size:10.5px;color:rgba(255,255,255,.65);margin-top:2px">{{ t.specialty }}</span>
+            </span>
+          </div>
+          <div style="font-size:13.5px;line-height:1.75;color:rgba(255,255,255,.75);margin-top:20px">Intermédica · Consultorio 1112<br>Calle 7 #39-197, Medellín, Colombia<br>+57 320 681 6213<br>andres@drpalacio.com</div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px">{{ t.footerNav }}</div>
+          <div style="display:grid;gap:10px;font-size:14px">
+            <a href="#sobre-mi" style="color:rgba(255,255,255,.85)" style-hover="color:#B99A55">{{ t.navAbout }}</a>
+            <a href="#servicios" style="color:rgba(255,255,255,.85)" style-hover="color:#B99A55">{{ t.navServices }}</a>
+            <a href="#consulta" style="color:rgba(255,255,255,.85)" style-hover="color:#B99A55">{{ t.navVisit }}</a>
+            <a href="Investigacion.dc.html" style="color:rgba(255,255,255,.85)" style-hover="color:#B99A55">{{ t.navResearch }}</a>
+            <a href="Preguntas Frecuentes.dc.html" style="color:rgba(255,255,255,.85)" style-hover="color:#B99A55">{{ t.faqTitle }}</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px">{{ t.footerFollow }}</div>
+          <div style="display:grid;gap:10px;font-size:14px">
+            <a href="https://x.com/palacioendocrin" target="_blank" rel="noopener" style="color:rgba(255,255,255,.85)" style-hover="color:#B99A55">X · @palacioendocrin</a>
+            <a href="https://substack.com/@andrespalacio1" target="_blank" rel="noopener" style="color:rgba(255,255,255,.85)" style-hover="color:#B99A55">Substack · @andrespalacio1</a>
+          </div>
+          <div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,.6);margin-top:22px">{{ t.hoursValue }}</div>
+        </div>
+      </div>
+      <div style="margin-top:40px;border-top:1px solid rgba(255,255,255,.14);padding-top:22px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:12.5px;color:rgba(255,255,255,.55)">
+        <span>© 2026 Dr. Andrés Palacio · {{ t.license }}</span>
+        <span>{{ t.bilingual }}</span>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ showFab }}" hint-placeholder-val="{{ false }}">
+    <a href="{{ waLink }}" target="_blank" rel="noopener" style="position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:10px;background:#0F3B2D;color:#fff;border-radius:999px;padding:15px 22px;font-size:14.5px;font-weight:600;box-shadow:0 18px 36px -18px rgba(10,42,32,.7)" style-hover="background:#0A2A20;color:#fff">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B99A55" stroke-width="1.7" stroke-linecap="round"><path d="M4 20l1.5-4A8 8 0 1 1 12 20a8 8 0 0 1-4-1L4 20z"></path></svg>
+    {{ t.fab }}
+  </a>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;es&quot;,&quot;en&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Idioma&quot;}}">
+const ICON = {
+  drop: '<svg viewBox="0 0 40 40" width="26" height="26" fill="none" stroke="#0F3B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 5c5 7 9 11 9 16a9 9 0 0 1-18 0c0-5 4-9 9-16z"/><path d="M20 27a6 6 0 0 1-6-6"/></svg>',
+  scale: '<svg viewBox="0 0 40 40" width="26" height="26" fill="none" stroke="#0F3B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="9" width="26" height="26" rx="2"/><path d="M14 22a6 6 0 0 1 12 0"/><path d="M20 22l4-5"/></svg>',
+  thyroid: '<svg viewBox="0 0 40 40" width="26" height="26" fill="none" stroke="#0F3B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c-2.2-2.4-5.4-2.9-7.3-1.2-2 1.8-1.9 6.2-.4 9.4 1.3 2.8 3.6 4.6 5.6 3.9 1.6-.6 2.1-2.8 2.1-5"/><path d="M20 13c2.2-2.4 5.4-2.9 7.3-1.2 2 1.8 1.9 6.2.4 9.4-1.3 2.8-3.6 4.6-5.6 3.9-1.6-.6-2.1-2.8-2.1-5"/><path d="M20 8.5V13"/></svg>',
+  heart: '<svg viewBox="0 0 40 40" width="26" height="26" fill="none" stroke="#0F3B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 30s-9-6-9-13a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 7-9 13-9 13z"/><path d="M11 20h5l2-3 3 6 2-3h6"/></svg>',
+  pump: '<svg viewBox="0 0 40 40" width="26" height="26" fill="none" stroke="#0F3B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="7" width="16" height="20" rx="2"/><path d="M16 12h8M16 16h8"/><path d="M20 27v3a3 3 0 0 0 3 3h5"/></svg>',
+  bone: '<svg viewBox="0 0 40 40" width="26" height="26" fill="none" stroke="#0F3B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 12a3 3 0 1 0-2 5v6a3 3 0 1 0 2 5"/><path d="M26 12a3 3 0 1 1 2 5v6a3 3 0 1 1-2 5"/><path d="M13 17h14M13 28h14"/></svg>',
+  venus: '<svg viewBox="0 0 40 40" width="26" height="26" fill="none" stroke="#0F3B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="16" r="7"/><path d="M20 23v11M15 29h10"/></svg>',
+  mars: '<svg viewBox="0 0 40 40" width="26" height="26" fill="none" stroke="#0F3B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="23" r="7"/><path d="M22 18l9-9M25 9h6v6"/></svg>',
+  stethoscope: '<svg viewBox="0 0 40 40" width="26" height="26" fill="none" stroke="#0F3B2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8v7a6 6 0 0 0 12 0V8"/><path d="M19 21v4a6 6 0 0 0 6 6h1"/><circle cx="29" cy="29" r="3"/></svg>'
+};
+
+const AREAS = [
+  { icon: ICON.drop, es: 'Diabetes<br>tipo 1 y tipo 2', en: 'Type 1 &amp; type 2<br>diabetes' },
+  { icon: ICON.scale, es: 'Obesidad y<br>metabolismo', en: 'Obesity &amp;<br>metabolism' },
+  { icon: ICON.thyroid, es: 'Enfermedades<br>tiroideas', en: 'Thyroid<br>disease' },
+  { icon: ICON.heart, es: 'Riesgo<br>cardiometabólico', en: 'Cardiometabolic<br>risk' },
+  { icon: ICON.pump, es: 'Bombas de insulina<br>y monitoreo', en: 'Insulin pumps<br>&amp; CGM' },
+  { icon: ICON.bone, es: 'Osteoporosis y<br>salud ósea', en: 'Osteoporosis &amp;<br>bone health' },
+  { icon: ICON.venus, es: 'Salud hormonal<br>femenina', en: "Women's hormonal<br>health" },
+  { icon: ICON.mars, es: 'Testosterona y<br>salud masculina', en: 'Testosterone &amp;<br>men\u2019s health' }
+];
+
+const SERVICES = [
+  { icon: ICON.drop, num: '01',
+    es: ['Diabetes tipo 1 y tipo 2', 'Diagnóstico y tratamiento de la diabetes y la glucosa elevada: medicamentos, educación en el manejo diario y tecnologías de monitorización.', 'Tratamiento de la diabetes y la glucosa elevada.'],
+    en: ['Type 1 and type 2 diabetes', 'Diagnosis and treatment of diabetes and elevated glucose: medication, day-to-day management education and monitoring technology.', 'Treatment of diabetes and elevated glucose.'] },
+  { icon: ICON.scale, num: '02',
+    es: ['Obesidad y metabolismo', 'Evaluación integral del peso y el metabolismo, y opciones médicas para el tratamiento de la obesidad.', 'Evaluación del peso y opciones médicas.'],
+    en: ['Obesity and metabolism', 'Comprehensive assessment of weight and metabolism, and medical options for obesity treatment.', 'Weight assessment and medical options.'] },
+  { icon: ICON.thyroid, num: '03',
+    es: ['Tiroides', 'Hipotiroidismo, hipertiroidismo, TSH alterada, enfermedad autoinmune y nódulos tiroideos.', 'Hipotiroidismo, TSH alterada y nódulos.'],
+    en: ['Thyroid', 'Hypothyroidism, hyperthyroidism, abnormal TSH, autoimmune thyroid disease and thyroid nodules.', 'Hypothyroidism, abnormal TSH and nodules.'] },
+  { icon: ICON.heart, num: '04',
+    es: ['Riesgo cardiometabólico y lípidos', 'Colesterol y triglicéridos alterados, hipertensión y otros factores relacionados con el riesgo cardiovascular.', 'Colesterol, triglicéridos e hipertensión.'],
+    en: ['Cardiometabolic risk and lipids', 'Abnormal cholesterol and triglycerides, hypertension and other cardiovascular risk factors.', 'Cholesterol, triglycerides and hypertension.'] },
+  { icon: ICON.pump, num: '05',
+    es: ['Bombas de insulina y monitoreo continuo', 'Selección de candidatos, inicio y seguimiento de terapia con bomba de insulina y monitorización continua de glucosa.', 'Inicio y seguimiento de bomba y monitoreo.'],
+    en: ['Insulin pumps and continuous monitoring', 'Candidate selection, initiation and follow-up of insulin pump therapy and continuous glucose monitoring.', 'Pump and CGM start-up and follow-up.'] },
+  { icon: ICON.bone, num: '06',
+    es: ['Osteoporosis', 'Evaluación de la salud ósea: osteopenia, osteoporosis y riesgo de fractura.', 'Salud ósea y riesgo de fractura.'],
+    en: ['Osteoporosis', 'Bone health assessment: osteopenia, osteoporosis and fracture risk.', 'Bone health and fracture risk.'] },
+  { icon: ICON.venus, num: '07',
+    es: ['Salud hormonal femenina', 'Alteraciones hormonales, ciclo menstrual y acompañamiento en la menopausia.', 'Ciclo menstrual y menopausia.'],
+    en: ["Women's hormonal health", 'Hormonal disorders, menstrual cycle and menopause care.', 'Menstrual cycle and menopause.'] },
+  { icon: ICON.mars, num: '08',
+    es: ['Testosterona y salud masculina', 'Evaluación de testosterona baja y otras alteraciones hormonales en el hombre.', 'Testosterona baja y salud hormonal.'],
+    en: ["Testosterone and men's health", 'Assessment of low testosterone and other hormonal disorders in men.', 'Low testosterone and hormonal health.'] }
+];
+
+const EDUCATION = [
+  { es: ['Endocrinología, Metabolismo y Lípidos', 'Emory University School of Medicine · Atlanta, GA · 2005–2007'],
+    en: ['Endocrinology, Metabolism and Lipids', 'Emory University School of Medicine · Atlanta, GA · 2005–2007'] },
+  { es: ['Medicina Interna', 'Emory University School of Medicine · Atlanta, GA · 2002–2005'],
+    en: ['Internal Medicine', 'Emory University School of Medicine · Atlanta, GA · 2002–2005'] },
+  { es: ['Médico y Cirujano', 'Escuela de Medicina CES · Medellín, Colombia · 1994–1999'],
+    en: ['Doctor of Medicine', 'CES School of Medicine · Medellín, Colombia · 1994–1999'] },
+  { es: ['Board Certified in Endocrinology, Diabetes and Metabolism', 'Certificación vigente'],
+    en: ['Board Certified in Endocrinology, Diabetes and Metabolism', 'Currently certified'] }
+];
+
+const AUTHORITY = [
+  { es: ['Profesor Asociado', 'Medicina Interna y Endocrinología · Universidad CES y Universidad Pontificia Bolivariana, Medellín.'],
+    en: ['Associate Professor', 'Internal Medicine and Endocrinology · Universidad CES and Universidad Pontificia Bolivariana, Medellín.'] },
+  { es: ['Investigador y autor', 'Publicaciones en diabetes, obesidad, hipertensión y tecnología aplicada al cuidado de la diabetes.'],
+    en: ['Researcher and author', 'Published work in diabetes, obesity, hypertension and technology applied to diabetes care.'] },
+  { es: ['Experiencia internacional', 'Formación y práctica clínica en Colombia y Estados Unidos.'],
+    en: ['International experience', 'Training and clinical practice in Colombia and the United States.'] }
+];
+
+const PUBS = [
+  { title: 'Randomized Study of Basal Bolus Insulin Therapy in the Inpatient Management of Patients with Type 2 Diabetes (RABBIT 2 Trial)', source: 'Diabetes Care · 2007', link: '' },
+  { title: 'Primary Aldosteronism in Diabetic Subjects with Resistant Hypertension', source: 'Diabetes Care · 2007', link: '' },
+  { title: 'Clinical Outcomes After 1 Year of Augmented Insulin Pump Therapy in Patients with Diabetes in a Specialized Diabetes Center in Medellín, Colombia', source: 'Diabetes Technology & Therapeutics · 2016;18(11):713–718', link: '' },
+  { title: 'Maternal and perinatal outcomes in pregnant women with type 1 diabetes treated with continuous subcutaneous insulin infusion and real-time continuous glucose monitoring in two specialized centers in Medellín, Colombia', source: 'The Journal of Maternal-Fetal & Neonatal Medicine · 2017', link: '' },
+  { title: 'Real-world effectiveness and safety of sensor-augmented insulin pump therapy in adults with type 1 diabetes: Long-term follow-up', source: 'Endocrinología, Diabetes y Nutrición · 2020', link: 'https://doi.org/10.1016/j.endinu.2020.07.012' },
+  { title: 'The effectiveness of a comprehensive diabetes program for glycemic control and adherence, and the selection of candidates for sensor-augmented insulin pump therapy', source: 'Endocrinología, Diabetes y Nutrición · 2020', link: 'https://doi.org/10.1016/j.endinu.2020.11.006' }
+];
+
+const STEPS = [
+  { num: '01', es: ['Escuchamos', 'Entender el motivo de consulta, los antecedentes y tus objetivos de salud.'], en: ['We listen', 'Understanding your reason for the visit, medical history and health goals.'] },
+  { num: '02', es: ['Evaluamos', 'Integrar historia clínica, medicamentos, laboratorios e imágenes.'], en: ['We evaluate', 'Integrating clinical history, medication, lab work and imaging.'] },
+  { num: '03', es: ['Explicamos', 'Explicar el diagnóstico y las alternativas disponibles, con la evidencia detrás de cada una.'], en: ['We explain', 'Explaining the diagnosis and available options, with the evidence behind each one.'] },
+  { num: '04', es: ['Planificamos', 'Construir un plan individualizado y definir el seguimiento.'], en: ['We plan', 'Building an individualized plan and defining follow-up.'] }
+];
+
+const FAQS = [
+  { es: ['¿Necesito tener un diagnóstico previo?', 'No. Puedes consultar por síntomas, resultados de laboratorio o una preocupación relacionada con tu salud metabólica u hormonal.'],
+    en: ['Do I need an existing diagnosis?', 'No. You can book a visit for symptoms, lab results or any concern about your metabolic or hormonal health.'] },
+  { es: ['¿Puedo llevar exámenes realizados previamente?', 'Sí. Llevar laboratorios, imágenes y la lista de tus medicamentos permite aprovechar mejor la consulta.'],
+    en: ['Can I bring previous test results?', 'Yes. Bringing lab work, imaging and your medication list makes the visit more productive.'] },
+  { es: ['¿La consulta es particular?', 'Sí, la consulta es particular.'],
+    en: ['Is the consultation private-pay?', 'Yes, consultations are private-pay.'] },
+  { es: ['¿La consulta está disponible en inglés?', 'Sí. La consulta está disponible en español e inglés.'],
+    en: ['Is the consultation available in English?', 'Yes. Consultations are available in English and Spanish.'] },
+  { es: ['¿Atiende pacientes fuera de Colombia?', 'Sí. La teleconsulta por videollamada está disponible para pacientes en Estados Unidos y Colombia, y no requiere ninguna visita presencial.'],
+    en: ['Do you see patients outside Colombia?', 'Yes. Video telemedicine is available for patients in the United States and Colombia, with no in-person visit required.'] },
+  { es: ['¿Cómo solicito una cita?', 'Por WhatsApp al +57 320 681 6213. Escríbeme y coordinamos el horario disponible.'],
+    en: ['How do I request an appointment?', 'By WhatsApp at +57 320 681 6213. Send a message and we will arrange an available time.'] }
+];
+
+const COPY = {
+  es: {
+    specialty: 'Medicina interna · Endocrinología',
+    specialty1: 'Medicina interna', specialty2: 'Endocrinología',
+    heroMeta: 'Medellín · Teleconsulta ES / EN',
+    navAbout: 'Sobre mí', navServices: 'Servicios', navVisit: 'Tu consulta', navResearch: 'Investigación', navContact: 'Contacto',
+    heroLede: 'Atención médica de excelencia basada en evidencia científica, enfocada en el metabolismo, la diabetes, la obesidad y la prevención cardiometabólica.',
+    bilingual: 'Consulta disponible en español e inglés',
+    location: 'Ubicación', hours: 'Horario',
+    hoursValue: 'Lunes a jueves, 8:00 a.m. – 5:00 p.m. · Viernes, 8:00 a.m. – 1:00 p.m.',
+    hoursShort: 'Lun–Jue 8–17 · Vie 8–13',
+    ctaWhatsapp: 'Agendar por WhatsApp', ctaEmail: 'Enviar correo', ctaRequest: 'Solicitar cita por WhatsApp', ctaDirections: 'Cómo llegar',
+    followMe: 'Sígueme en', fab: 'Solicitar cita',
+    cardRole1: 'Médico Internista', cardRole2: 'Endocrinólogo',
+    cardPhilosophy: 'Medicina basada en evidencia · Cuidado centrado en la persona',
+    areasTitle: 'Áreas de atención',
+    quote: 'Mi compromiso es acompañarte con ciencia, experiencia y humanidad en cada decisión sobre tu salud.',
+    aboutTitle: 'Sobre mí',
+    aboutP1: 'Soy médico internista y endocrinólogo, con más de 18 años de experiencia clínica, académica y de investigación en el cuidado de pacientes con enfermedades endocrinas, metabólicas y cardiometabólicas.',
+    aboutP2: 'Mi enfoque combina la mejor evidencia científica con una atención personalizada para ayudarte a alcanzar tu mejor versión de salud y bienestar a largo plazo.',
+    license: 'Registro médico 5024401',
+    educationTitle: 'Formación destacada',
+    servicesTitle: '¿En qué puedo ayudarte?',
+    servicesLede: 'Consulta particular para adultos en Medellín y teleconsulta internacional, con seguimiento cercano en cada una de estas áreas.',
+    visitTitle: 'Una consulta para entender, decidir y actuar.',
+    visitLede: 'Cuatro momentos que estructuran cada cita, de la primera consulta al seguimiento.',
+    teleTitle: 'Teleconsulta internacional',
+    teleBody: 'Atención por videollamada para pacientes en Estados Unidos y Colombia. Se agenda por WhatsApp y no requiere ninguna visita presencial.',
+    researchTitle: 'Investigación y publicaciones',
+    researchLede: 'Investigación clínica en endocrinología, metabolismo, tecnología aplicada a la diabetes y prevención cardiometabólica.',
+    viewPub: 'Ver publicación →',
+    researchNote: 'Selección de publicaciones. La hoja de vida académica completa está disponible a solicitud.',
+    researchTeaser: 'Publicaciones en diabetes, metabolismo y tecnología en salud',
+    faqTeaser: 'Cómo es la consulta, qué llevar y cómo agendar',
+    seeAll: 'Ver todo',
+    ideasTitle: 'Ideas y evidencia',
+    ideasBody: 'Reflexiones sobre endocrinología, metabolismo, prevención, longevidad, ejercicio, nutrición y nuevas tecnologías aplicadas a la salud.',
+    ctaSubstack: 'Leer en Substack →', ctaX: 'Seguir en X →',
+    contactTitle: 'Consulta particular en Medellín',
+    faqTitle: 'Preguntas frecuentes',
+    faqLede: 'Si tu pregunta no está aquí, escríbeme por WhatsApp y te respondo.',
+    footerNav: 'Navegación', footerFollow: 'Sígueme'
+  },
+  en: {
+    specialty: 'Internal medicine · Endocrinology',
+    specialty1: 'Internal medicine', specialty2: 'Endocrinology',
+    heroMeta: 'Medellín · Telemedicine ES / EN',
+    navAbout: 'About', navServices: 'Services', navVisit: 'Your visit', navResearch: 'Research', navContact: 'Contact',
+    heroLede: 'Excellent medical care grounded in scientific evidence, focused on metabolism, diabetes, obesity and cardiometabolic prevention.',
+    bilingual: 'Consultations available in English and Spanish',
+    location: 'Location', hours: 'Office hours',
+    hoursValue: 'Monday to Thursday, 8:00 a.m. – 5:00 p.m. · Friday, 8:00 a.m. – 1:00 p.m.',
+    hoursShort: 'Mon–Thu 8–17 · Fri 8–13',
+    ctaWhatsapp: 'Book via WhatsApp', ctaEmail: 'Send an email', ctaRequest: 'Request an appointment', ctaDirections: 'Get directions',
+    followMe: 'Follow me on', fab: 'Book a visit',
+    cardRole1: 'Internal Medicine', cardRole2: 'Endocrinologist',
+    cardPhilosophy: 'Evidence-based medicine · Person-centered care',
+    areasTitle: 'Areas of care',
+    quote: 'My commitment is to guide you with science, experience and humanity in every decision about your health.',
+    aboutTitle: 'About me',
+    aboutP1: 'I am an internist and endocrinologist with more than 18 years of clinical, academic and research experience caring for patients with endocrine, metabolic and cardiometabolic disease.',
+    aboutP2: 'My approach combines the best scientific evidence with personalized care, to help you reach your best version of health and long-term wellbeing.',
+    license: 'Medical license 5024401',
+    educationTitle: 'Selected training',
+    servicesTitle: 'How can I help you?',
+    servicesLede: 'Private adult consultations in Medellín and international telemedicine, with close follow-up across each of these areas.',
+    visitTitle: 'A consultation to understand, decide and act.',
+    visitLede: 'Four moments that structure every visit, from the first consultation through follow-up.',
+    teleTitle: 'International telemedicine',
+    teleBody: 'Video consultations for patients in the United States and Colombia. Scheduled through WhatsApp, with no in-person visit required.',
+    researchTitle: 'Research and publications',
+    researchLede: 'Clinical research in endocrinology, metabolism, diabetes technology and cardiometabolic prevention.',
+    viewPub: 'View publication →',
+    researchNote: 'Selected publications. The full academic CV is available on request.',
+    researchTeaser: 'Published work in diabetes, metabolism and health technology',
+    faqTeaser: 'How the visit works, what to bring and how to book',
+    seeAll: 'See all',
+    ideasTitle: 'Ideas and evidence',
+    ideasBody: 'Notes on endocrinology, metabolism, prevention, longevity, exercise, nutrition and new technology applied to health.',
+    ctaSubstack: 'Read on Substack →', ctaX: 'Follow on X →',
+    contactTitle: 'Private practice in Medellín',
+    faqTitle: 'Frequently asked questions',
+    faqLede: 'If your question is not here, message me on WhatsApp and I will answer.',
+    footerNav: 'Navigation', footerFollow: 'Follow'
+  }
+};
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const pref = props && props.defaultLang;
+    let lang = pref === 'es' || pref === 'en' ? pref : null;
+    if (!lang) {
+      const nav = (typeof navigator !== 'undefined' && (navigator.language || '')) || '';
+      lang = nav.toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+    }
+    this.state = { lang: lang, openFaq: 0, showFab: false, wide: true, navOpen: false, mode: 'desktop' };
+  }
+
+  setLang(lang) { this.setState({ lang: lang }); }
+
+  componentDidMount() {
+    this._onResize = () => {
+      const w = window.innerWidth;
+      const wide = w >= 900;
+      const mode = w < 700 ? 'phone' : (w < 1040 ? 'tablet' : 'desktop');
+      const root = document.documentElement.style;
+      if (mode === 'phone') {
+        root.setProperty('--contact-basis', '100%');
+        root.setProperty('--card-basis', '100%');
+        root.setProperty('--card-padding', '20px');
+        root.setProperty('--col3', '100%');
+        root.setProperty('--auth-basis', '100%');
+        root.setProperty('--step-basis', '100%');
+        root.setProperty('--step-display', 'flex');
+        root.setProperty('--step-title-mt', '4px');
+        root.setProperty('--hero-photo', 'none');
+        root.setProperty('--line-right', 'auto');
+        root.setProperty('--line-w', '2px');
+        root.setProperty('--line-h', 'auto');
+        root.setProperty('--line-bottom', '40px');
+        root.setProperty('--timeline-line', 'linear-gradient(180deg,#0F3B2D 0%,#0F3B2D 78%,rgba(15,59,45,.15) 100%)');
+      } else if (mode === 'tablet') {
+        root.setProperty('--contact-basis', 'calc(50% - 7px)');
+        root.setProperty('--card-basis', 'calc(50% - 8px)');
+        root.setProperty('--card-padding', '28px');
+        root.setProperty('--col3', 'calc(50% - 8px)');
+        root.setProperty('--auth-basis', '100%');
+        root.setProperty('--step-basis', 'calc(25% - 21px)');
+        root.setProperty('--step-display', 'block');
+        root.setProperty('--step-title-mt', '20px');
+        root.setProperty('--hero-photo', 'block');
+        root.setProperty('--line-right', '26px');
+        root.setProperty('--line-w', 'auto');
+        root.setProperty('--line-h', '2px');
+        root.setProperty('--line-bottom', 'auto');
+        root.setProperty('--timeline-line', 'linear-gradient(90deg,#0F3B2D 0%,#0F3B2D 78%,rgba(15,59,45,.15) 100%)');
+      } else {
+        root.setProperty('--contact-basis', 'calc(25% - 11px)');
+        root.setProperty('--card-basis', 'calc(25% - 12px)');
+        root.setProperty('--col3', 'calc(33.333% - 11px)');
+        root.setProperty('--auth-basis', 'calc(33.333% - 11px)');
+        root.setProperty('--step-basis', 'calc(25% - 21px)');
+        root.setProperty('--card-padding', '28px');
+        root.setProperty('--step-display', 'block');
+        root.setProperty('--step-title-mt', '20px');
+        root.setProperty('--hero-photo', 'block');
+        root.setProperty('--line-right', '26px');
+        root.setProperty('--line-w', 'auto');
+        root.setProperty('--line-h', '2px');
+        root.setProperty('--line-bottom', 'auto');
+        root.setProperty('--timeline-line', 'linear-gradient(90deg,#0F3B2D 0%,#0F3B2D 78%,rgba(15,59,45,.15) 100%)');
+      }
+      if (mode !== this.state.mode || wide !== this.state.wide) this.setState({ mode: mode, wide: wide, navOpen: false });
+    };
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+    const hero = document.getElementById('inicio');
+    if (!hero || typeof IntersectionObserver === 'undefined') { this.setState({ showFab: true }); return; }
+    this._io = new IntersectionObserver((entries) => {
+      const e = entries[0];
+      this.setState({ showFab: !(e && e.isIntersecting) });
+    }, { threshold: 0.12 });
+    this._io.observe(hero);
+  }
+
+  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._onResize) window.removeEventListener('resize', this._onResize); }
+
+  langBtn(active) {
+    return "font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;cursor:pointer;border:0;border-radius:999px;"
+      + (active ? 'background:#0F3B2D;color:#FFFFFF;' : 'background:transparent;color:#0F3B2D;');
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    const t = Object.assign({}, COPY[lang]);
+    const msg = lang === 'es'
+      ? 'Hola Dr. Andrés Palacio, quisiera solicitar una consulta.'
+      : 'Hello Dr. Andrés Palacio, I would like to request a consultation.';
+
+    return {
+      t: t,
+      showFab: !!this.state.showFab,
+      isWide: !!this.state.wide,
+      isPhone: this.state.mode === 'phone',
+      notPhone: this.state.mode !== 'phone',
+      isNarrow: !this.state.wide,
+      navOpen: !this.state.wide && !!this.state.navOpen,
+      toggleNav: () => this.setState({ navOpen: !this.state.navOpen }),
+      closeNav: () => this.setState({ navOpen: false }),
+      waLink: 'https://wa.me/573206816213?text=' + encodeURIComponent(msg),
+      setEs: () => this.setLang('es'),
+      setEn: () => this.setLang('en'),
+      esBtnStyle: this.langBtn(lang === 'es'),
+      enBtnStyle: this.langBtn(lang === 'en'),
+      areas: AREAS.map((a, i) => {
+        const parts = a[lang].split('<br>');
+        const decode = (s) => s.replace(/&amp;/g, '&').replace(/&#39;|&rsquo;/g, '\u2019');
+        return { key: i, icon: { __html: a.icon }, label1: decode(parts[0]), label2: decode(parts[1] || '') };
+      }),
+      services: SERVICES.map((s, i) => ({ key: i, num: s.num, icon: { __html: s.icon }, title: s[lang][0], body: s[lang][1], showBody: this.state.mode !== 'phone' })),
+      education: EDUCATION.map((e, i) => ({ key: i, title: e[lang][0], detail: e[lang][1] })),
+      authority: AUTHORITY.map((b, i) => ({ key: i, title: b[lang][0], detail: b[lang][1] })),
+      publications: PUBS.map((p, i) => ({ key: i, title: p.title, source: p.source, link: p.link, hasLink: !!p.link })),
+      steps: STEPS.map((s, i) => ({ key: i, num: s.num, title: s[lang][0], body: s[lang][1], dotBg: i === STEPS.length - 1 ? '#B99A55' : '#0F3B2D', dotInk: i === STEPS.length - 1 ? '#101A20' : '#FFFFFF' })),
+      faqs: FAQS.map((f, i) => ({
+        key: i,
+        q: f[lang][0],
+        a: f[lang][1],
+        open: this.state.openFaq === i,
+        sign: this.state.openFaq === i ? '–' : '+',
+        toggle: () => this.setState({ openFaq: this.state.openFaq === i ? -1 : i })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

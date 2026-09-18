@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FBFAF8;color:#101A20;font-family:"Instrument Sans",system-ui,sans-serif}</style>
+</helmet>
+<div style="padding:clamp(24px,4vw,48px);display:grid;gap:16px">
+  <div style="display:flex;align-items:baseline;gap:12px">
+    <span style="font-family:'Instrument Serif',serif;font-size:26px;color:#0F3B2D">Opción A</span>
+    <span style="font-size:13px;color:#7C8A87">Monograma ligado · la A y la P comparten asta</span>
+  </div>
+
+  <div style="background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:22px;padding:clamp(28px,4vw,52px);display:grid;place-items:center;min-height:210px">
+    <div style="display:flex;align-items:center;gap:20px">
+      <svg viewBox="0 0 120 96" width="96" height="77" fill="none" stroke="#0F3B2D" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 88 L44 8 L82 88" stroke-width="5"></path>
+        <path d="M22 62 H66" stroke-width="4"></path>
+        <path d="M60 88 V26 H84 a19 19 0 0 1 0 38 H60" stroke-width="5"></path>
+      </svg>
+      <span style="width:1px;height:62px;background:rgba(16,26,32,.14)"></span>
+      <span style="line-height:1.35">
+        <span style="display:block;font-family:'Instrument Serif',serif;font-size:30px;letter-spacing:-.01em;color:#101A20">Dr. Andrés Palacio</span>
+        <span style="display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7C8A87;margin-top:5px">Medicina interna · Endocrinología</span>
+      </span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+    <div style="background:#0F3B2D;border-radius:22px;padding:34px;display:grid;place-items:center;min-height:170px">
+      <div style="display:flex;align-items:center;gap:16px">
+        <svg viewBox="0 0 120 96" width="64" height="51" fill="none" stroke="#FBFAF8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 88 L44 8 L82 88" stroke-width="5"></path>
+          <path d="M22 62 H66" stroke-width="4"></path>
+          <path d="M60 88 V26 H84 a19 19 0 0 1 0 38 H60" stroke-width="5"></path>
+        </svg>
+        <span style="line-height:1.35">
+          <span style="display:block;font-family:'Instrument Serif',serif;font-size:22px;color:#FFFFFF">Dr. Andrés Palacio</span>
+          <span style="display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#B99A55;margin-top:4px">Medicina interna · Endocrinología</span>
+        </span>
+      </div>
+    </div>
+    <div style="background:#EAF0EC;border-radius:22px;padding:34px;display:grid;place-items:center;min-height:170px">
+      <svg viewBox="0 0 120 96" width="104" height="84" fill="none" stroke="#0F3B2D" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 88 L44 8 L82 88" stroke-width="5"></path>
+        <path d="M22 62 H66" stroke-width="4"></path>
+        <path d="M60 88 V26 H84 a19 19 0 0 1 0 38 H60" stroke-width="5"></path>
+      </svg>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid rgba(16,26,32,.08);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px;justify-content:center">
+      <div style="display:flex;gap:12px;align-items:center">
+        <span style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:#0F3B2D">
+          <svg viewBox="0 0 120 96" width="28" height="23" fill="none" stroke="#FBFAF8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 88 L44 8 L82 88"></path><path d="M22 62 H66"></path><path d="M60 88 V26 H84 a19 19 0 0 1 0 38 H60"></path></svg>
+        </span>
+        <span style="font-size:13px;color:#7C8A87">Favicon 44 px</span>
+      </div>
+      <div style="font-size:13.5px;line-height:1.7;color:#4B5A5A">Solo trazo: no depende de ninguna tipografía y aguanta sello, bordado y grabado. El travesaño de la A se extiende hasta la P para unirlas.</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

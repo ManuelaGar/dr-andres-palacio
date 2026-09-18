@@ -1,0 +1,57 @@
+{
+  "name": "dr-andres-palacio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal website for Dr. Andrés Palacio, internist and endocrinologist in Medellín.",
+  "scripts": {
+    "start:dev": "next dev",
+    "build": "next build",
+    "preview": "serve out -l 3000",
+    "typecheck": "tsc --noEmit",
+    "lint": "ts-standard",
+    "lint:fix": "ts-standard --fix",
+    "images": "node scripts/optimize-images.mjs",
+    "og": "node scripts/render-og.mjs",
+    "e2e": "playwright test",
+    "verify": "pnpm lint && pnpm typecheck && pnpm build"
+  },
+  "dependencies": {
+    "next": "16.3.5",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "sharp": "^0.34.5",
+    "serve": "^14.2.4",
+    "ts-standard": "^12.0.2",
+    "typescript": "^5.8.3"
+  },
+  "ts-standard": {
+    "env": [
+      "node",
+      "browser",
+      "es2021"
+    ],
+    "ignore": [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "public/**",
+      "docs/**",
+      "scripts/**",
+      "playwright-report/**",
+      "test-results/**",
+      "*.config.ts",
+      "*.config.mjs"
+    ],
+    "project": "./tsconfig.json"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "packageManager": "pnpm@11.1.1"
+}
