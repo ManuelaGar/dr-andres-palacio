@@ -11,7 +11,7 @@ Personal website for **Dr. Andrés Palacio**, internist and endocrinologist in M
 | Fonts | Instrument Serif + Instrument Sans, self-hosted from `src/fonts/` (OFL) |
 | Lint | ts-standard |
 | Tests | Playwright against the built site (desktop + mobile) |
-| Hosting | Cloudflare Pages, DNS for `drpalacio.com` pointed from GoDaddy |
+| Hosting | Cloudflare Workers static assets (`wrangler.jsonc`), DNS for `drpalacio.com` moved from GoDaddy to Cloudflare |
 
 No Tailwind, no UI kit, no i18n library: the site is eight static pages and the only client JavaScript is the mobile menu and the floating WhatsApp button.
 
@@ -31,7 +31,7 @@ Node 22.14+ and pnpm 11 (`packageManager` in `package.json`).
 |---|---|
 | `pnpm start:dev` | Dev server |
 | `pnpm build` | Static export to `out/` |
-| `pnpm preview` | Serves `out/` on :3000 with clean URLs, as Cloudflare does |
+| `pnpm preview` | Serves `out/` on :3000 with clean URLs |
 | `pnpm lint` / `pnpm typecheck` | ts-standard / `tsc --noEmit` |
 | `pnpm e2e` | Builds, serves and runs `e2e/` (first run: `pnpm exec playwright install chromium`) |
 | `pnpm verify` | lint + typecheck + build. Run before pushing |
@@ -69,24 +69,25 @@ Differences from the design, on purpose:
 - On phones the hero and contact CTAs are full width.
 - Footer links to the privacy notice; `/privacidad` is new.
 
-## Deploy: Cloudflare Pages
+## Deploy: Cloudflare Workers (static assets)
+
+The site deploys as a Worker that only serves the files in `out/`; there is no server code. `wrangler.jsonc` points Wrangler at that folder. Without that file, `wrangler deploy` detects Next.js and tries to convert the project to OpenNext, which fails.
 
 One-time setup:
 
 1. Push this repo to GitHub.
-2. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git** → pick the repo.
+2. Cloudflare dashboard → **Workers & Pages → Create application → Import a repository** → pick the repo.
 3. Build settings:
-   - Framework preset: **None**
    - Build command: `pnpm build`
-   - Build output directory: `out`
-   - Environment variables: `PNPM_VERSION = 11.1.1` (the build image defaults to pnpm 10, which does not read `pnpm-workspace.yaml`'s `allowBuilds`). Node comes from `.node-version`.
-4. Deploy. The site is live at `<project>.pages.dev`; check it there first.
-5. **Custom domains** → add `drpalacio.com` and `www.drpalacio.com`. Pages only serves an apex domain from a Cloudflare zone, so the domain's nameservers must move from GoDaddy to Cloudflare (the domain stays registered at GoDaddy). Before switching nameservers, confirm Cloudflare imported every existing DNS record, especially MX and TXT: `andres@drpalacio.com` stops receiving mail if they are missing.
+   - Deploy command: `npx wrangler deploy`
+   - Environment variable (build): `PNPM_VERSION = 11.1.1` (the build image defaults to pnpm 10, which does not read `pnpm-workspace.yaml`'s `allowBuilds`). Node comes from `.node-version`.
+4. Deploy. The site is live at `dr-andres-palacio.<account>.workers.dev`; check it there first.
+5. **Settings → Domains & Routes → Add → Custom domain** → `drpalacio.com`, then `www.drpalacio.com`. A custom domain needs the domain to be a Cloudflare zone, so its nameservers must move from GoDaddy to Cloudflare (the domain stays registered at GoDaddy). Before switching nameservers, confirm Cloudflare imported every existing DNS record, especially MX and TXT: `andres@drpalacio.com` stops receiving mail if they are missing.
 6. Redirect `www` to the apex with a Cloudflare redirect rule, so there is one canonical host.
 
-After that every push to `main` deploys, and every other branch gets a preview URL.
+After that every push to `main` deploys.
 
-Cloudflare serves `en.html` at `/en` and `investigacion.html` at `/investigacion` without extra config. Security and cache headers are in `public/_headers`.
+`html_handling: drop-trailing-slash` serves `en.html` at `/en` and redirects `/en/` and `/investigacion.html` to the clean URL. Unknown paths get `404.html` with a 404 status. Security and cache headers are in `public/_headers`, which Workers static assets honours.
 
 ## After launch
 
