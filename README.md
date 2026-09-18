@@ -81,7 +81,7 @@ One-time setup:
    - Build output directory: `out`
    - Environment variables: `PNPM_VERSION = 11.1.1` (the build image defaults to pnpm 10, which does not read `pnpm-workspace.yaml`'s `allowBuilds`). Node comes from `.node-version`.
 4. Deploy. The site is live at `<project>.pages.dev`; check it there first.
-5. **Custom domains** → add `drpalacio.com` and `www.drpalacio.com`. Cloudflare shows the DNS records to create. The domain stays registered at GoDaddy; either move its nameservers to Cloudflare (recommended: Cloudflare then manages the certificate and the `www` redirect) or add the CNAME records it shows in GoDaddy's DNS.
+5. **Custom domains** → add `drpalacio.com` and `www.drpalacio.com`. Pages only serves an apex domain from a Cloudflare zone, so the domain's nameservers must move from GoDaddy to Cloudflare (the domain stays registered at GoDaddy). Before switching nameservers, confirm Cloudflare imported every existing DNS record, especially MX and TXT: `andres@drpalacio.com` stops receiving mail if they are missing.
 6. Redirect `www` to the apex with a Cloudflare redirect rule, so there is one canonical host.
 
 After that every push to `main` deploys, and every other branch gets a preview URL.
